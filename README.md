@@ -80,7 +80,7 @@ the format.
 * Ips
 * Metadata
 
-##Tested Api
+##Tested API
 * Users
 * Messages
     * send
