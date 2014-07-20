@@ -10,7 +10,7 @@ A small Javascript library that sends emails using [Mandrill](http://www.mandril
 ```
 npm will come once I learn more about it!
 
-##Example: Get User Info
+##Example: Get Ping Pong
 ```javascript
 //create a request
 var request = {
