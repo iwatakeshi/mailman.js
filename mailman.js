@@ -383,7 +383,7 @@
         var api = MANDRILLAPI;
         //http://stackoverflow.com/a/6906859/1251031
         function parse() {
-            if (!input) {
+            if (!input || input.api === "") {
                 return undefined;
             }
 
