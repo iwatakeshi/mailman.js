@@ -43,13 +43,13 @@ var request = {
             html:"<p>Example HTML content</p>",
             text:"Example text content",
             subject:"example subject",
-            from_email: "iwatakeshi@gmail.com",
+            from_email: "example@example.com",
             from_name: "Example Name",
             //note that this is an array, therefore you can send
             //to multiple recipients
             to:[{
-                email: "iwatakeshi@gmail.com",
-                name:"iwatakeshi",
+                email: "example@example.com",
+                name:"Example",
                 type: "to"
     }]
  }
