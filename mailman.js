@@ -3,7 +3,7 @@
 /*global module, $, console*/
 /*
  * mailman.js
- * version : 0.0.1
+ * version : 0.2
  * author : Takeshi Iwana
  * license : MIT
  * Code heavily borrwoed from Adam Draper
@@ -43,7 +43,7 @@
     var mailman,
         // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
-        VERSION = '0.0.1',
+        VERSION = '0.2',
         MANDRILLURL = "https://mandrillapp.com/api/1.0/",
         MANDRILLCALLS = {
             users: MANDRILLURL + "users/",
@@ -433,7 +433,6 @@
      *@param {Object} obj
      *@param {String} msg
      */
-
     mailman.debug = function (obj, msg) {
         if (CONFIG.debug === true) {
             if (msg) {
@@ -449,36 +448,8 @@
             return mailman(this);
         },
         request: function () {
-            /*
-            var config = {
-                    'key': '',
-                    'message': {
-                        'from_email': '',
-                        'to': [
-                            {
-                                'email': '',
-                                'name': '',
-                                'type': 'to'
-                            }
-                        ],
-                        'autotext': 'true',
-                        'subject': '',
-                        'html': ''
-                    }
-                },*/
             var sent = $.Deferred();
-            /*
-                data: {
-                    "key": CONFIG.key,
-                    "message": {
-                        "from_email": config.message.from_email,
-                        "to": config.message.to,
-                        "autotext": "true",
-                        "subject": config.message.subject,
-                        "html": config.message.html
-                    }
-                }
-            */
+            
             mailman.debug(CONFIG.api, "type");
             $.ajax({
                 type: CONFIG.type,
