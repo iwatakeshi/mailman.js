@@ -1,15 +1,14 @@
-/* jslint white: true, forin: true*/
+/*jslint forin: true*/
+/*jslint white: true*/
 /*jshint immed: true*/
 /*global module, $, console*/
 /*
  * mailman.js
- * version : 0.2
+ * version : 0.0.1
  * author : Takeshi Iwana
  * license : MIT
  * Code heavily borrwoed from Adam Draper
  */
-
-
 
 (function () {
     'use strict';
@@ -35,6 +34,35 @@
         }
         return destination;
     };
+    //http://stackoverflow.com/a/18097040
+    function Deferred() {
+        this._done = [];
+        this._fail = [];
+    }
+    Deferred.prototype = {
+        execute: function (list, args) {
+            var i = list.length;
+
+            // convert arguments to an array
+            // so they can be sent to the
+            // callbacks via the apply method
+            args = Array.prototype.slice.call(args);
+
+            while (i--) list[i].apply(null, args);
+        },
+        resolve: function () {
+            this.execute(this._done, arguments);
+        },
+        reject: function () {
+            this.execute(this._fail, arguments);
+        },
+        done: function (callback) {
+            this._done.push(callback);
+        },
+        fail: function (callback) {
+            this._fail.push(callback);
+        }
+    };
 
     /************************************
         Constants & Variables
@@ -43,7 +71,7 @@
     var mailman,
         // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
-        VERSION = '0.2',
+        VERSION = '0.0.1',
         MANDRILLURL = "https://mandrillapp.com/api/1.0/",
         MANDRILLCALLS = {
             users: MANDRILLURL + "users/",
@@ -448,19 +476,38 @@
             return mailman(this);
         },
         request: function () {
-            var sent = $.Deferred();
-            
-            mailman.debug(CONFIG.api, "type");
-            $.ajax({
-                type: CONFIG.type,
-                url: CONFIG.api.url,
-                data: CONFIG.data
-            }).done(function (response) {
-                mailman.debug(response, 'Response:');
+            //if we are using jquery
+            if (!typeof $ === 'undefined') {
+                mailman.debug(jQuery, "defined");
+                var sent = $.Deferred();
 
-                sent.resolve(response);
-            });
-            return sent.promise();
+                mailman.debug(CONFIG.api, "type");
+                $.ajax({
+                    type: CONFIG.type,
+                    url: CONFIG.api.url,
+                    data: CONFIG.data
+                }).done(function (response) {
+                    mailman.debug(response, 'Response:');
+
+                    sent.resolve(response);
+                });
+                return sent.promise();
+            } else {
+                var request = require('superagent');
+                var sent = new Deferred();
+                request
+                    .post(CONFIG.api.url)
+                    .send(CONFIG.data)
+                    .end(function (res) {
+                        if (res.ok) {
+                            sent.resolve(res);
+                            mailman.debug(JSON.stringify(res.body), 'Response:');
+                        } else {
+                            mailman.debug(res.text, 'Error reponse:');
+                        }
+                    });
+                return sent;
+            }
         }
     };
 
