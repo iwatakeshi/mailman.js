@@ -1,18 +1,12 @@
 {
-  "name": "mailman.js",
-  "version": "0.0.2",
-  "description": "Send email using Madrill's API.",
-  "preferGlobal": "true",
-  "bin": {
-    "mailman.js": "mailman.js"
-  },
-  "author": {
-    "name": "iwatakeshi"
-  },
-  "dependencies": {
+    "name": "mailman.js",
+    "version": "0.0.2",
+    "description": "Send email using Madrill's API.",
+    "preferGlobal": "true",
+    "bin": { "mailman.js": "mailman.js" },
+    "author": "iwatakeshi",
+    "dependencies": {
     "superagent":"0.18.2"
   },
-  "engines": {
-    "node": "*"
-  }
-
+    "engines": { "node": "*" }
+}
