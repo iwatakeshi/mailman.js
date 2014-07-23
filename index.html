@@ -36,11 +36,24 @@
 <h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
+<h3>
+<a name="in-the-browser" class="anchor" href="#in-the-browser"><span class="octicon octicon-link"></span></a>In the browser</h3>
+
 <div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"mailman.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//code.jquery.com/jquery-1.11.0.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></div>
 
-<p>npm will come once I learn more about it!</p>
+<h3>
+<a name="in-nodejs" class="anchor" href="#in-nodejs"><span class="octicon octicon-link"></span></a>In Node.js</h3>
+
+<pre lang="npm"><code>npm install mailman.js
+</code></pre>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">mailman</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mailman.js'</span><span class="p">);</span>
+<span class="cm">/*note: if that gives you errors try:</span>
+<span class="cm">var mailman = require('.bin/mailman.js');</span>
+<span class="cm">*/</span>
+</pre></div>
 
 <h2>
 <a name="example-ping-pong" class="anchor" href="#example-ping-pong"><span class="octicon octicon-link"></span></a>Example: Ping Pong</h2>
