@@ -1,6 +1,6 @@
 {
   "name": "mailman.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Send email using Madrill's API.",
   "preferGlobal": "true",
   "bin": {
