@@ -4,12 +4,22 @@ mailman.js
 A small Javascript library that sends emails using [Mandrill](http://www.mandrillapp.com)'s email service.
 
 ##Usage
+###In the browser
 ```html
 <script src="mailman.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 ```
-npm will come once I learn more about it!
 
+###In Node.js
+```npm
+npm install mailman.js
+```
+``` javascript
+var mailman = require('mailman.js');
+/*note: if that gives you errors try:
+var mailman = require('.bin/mailman.js');
+*/
+```
 ##Example: Ping Pong
 ```javascript
 //create a request
