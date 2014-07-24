@@ -71,7 +71,7 @@
     var mailman,
         // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
-        VERSION = '0.0.1',
+        VERSION = '0.0.2',
         MANDRILLURL = "https://mandrillapp.com/api/1.0/",
         MANDRILLCALLS = {
             users: MANDRILLURL + "users/",
