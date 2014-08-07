@@ -4,13 +4,13 @@
 /*global module, $, console*/
 /*
  * mailman.js
- * version : 0.0.2
+ * version : 0.0.3
  * author : Takeshi Iwana
  * license : MIT
  * Code heavily borrwoed from Adam Draper
  */
 
-(function () {
+(function() {
     'use strict';
 
     /************************************
@@ -22,7 +22,7 @@
      * @param {Object} destination
      * @param {Object} source
      */
-    Object.extender = function (destination, source) {
+    Object.extender = function(destination, source) {
         var property;
         for (property in source) { // loop through the objects properties
             if (typeof source[property] === "object") { // if this is an object
@@ -40,7 +40,7 @@
         this._fail = [];
     }
     Deferred.prototype = {
-        execute: function (list, args) {
+        execute: function(list, args) {
             var i = list.length;
 
             // convert arguments to an array
@@ -50,16 +50,16 @@
 
             while (i--) list[i].apply(null, args);
         },
-        resolve: function () {
+        resolve: function() {
             this.execute(this._done, arguments);
         },
-        reject: function () {
+        reject: function() {
             this.execute(this._fail, arguments);
         },
-        done: function (callback) {
+        done: function(callback) {
             this._done.push(callback);
         },
-        fail: function (callback) {
+        fail: function(callback) {
             this._fail.push(callback);
         }
     };
@@ -71,7 +71,7 @@
     var mailman,
         // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
-        VERSION = '0.0.2',
+        VERSION = '0.0.3',
         MANDRILLURL = "https://mandrillapp.com/api/1.0/",
         MANDRILLCALLS = {
             users: MANDRILLURL + "users/",
@@ -439,7 +439,7 @@
         Top Level Functions
     ************************************/
 
-    mailman = function (input) {
+    mailman = function(input) {
         if (mailman.isMailman(input)) {
             input = input.value();
         } else if (input === 0 || typeof input === 'undefined') {
@@ -453,7 +453,7 @@
     mailman.version = VERSION;
 
     // compare mailman object
-    mailman.isMailman = function (obj) {
+    mailman.isMailman = function(obj) {
         return obj instanceof Mailman;
     };
     /*
@@ -461,7 +461,7 @@
      *@param {Object} obj
      *@param {String} msg
      */
-    mailman.debug = function (obj, msg) {
+    mailman.debug = function(obj, msg) {
         if (CONFIG.debug === true) {
             if (msg) {
                 console.log(msg);
@@ -472,10 +472,10 @@
 
     mailman.fn = Mailman.prototype = {
 
-        clone: function () {
+        clone: function() {
             return mailman(this);
         },
-        request: function () {
+        request: function() {
             //if we are using jquery
             if (!typeof $ === 'undefined') {
                 mailman.debug(jQuery, "defined");
@@ -486,7 +486,7 @@
                     type: CONFIG.type,
                     url: CONFIG.api.url,
                     data: CONFIG.data
-                }).done(function (response) {
+                }).done(function(response) {
                     mailman.debug(response, 'Response:');
 
                     sent.resolve(response);
@@ -498,7 +498,7 @@
                 request
                     .post(CONFIG.api.url)
                     .send(CONFIG.data)
-                    .end(function (res) {
+                    .end(function(res) {
                         if (res.ok) {
                             sent.resolve(res);
                             mailman.debug(JSON.stringify(res.body), 'Response:');
@@ -530,7 +530,7 @@
 
     /*global define:false */
     if (typeof define === 'function' && define.amd) {
-        define([], function () {
+        define([], function() {
             return mailman;
         });
     }
