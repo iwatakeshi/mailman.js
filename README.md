@@ -1,6 +1,8 @@
 mailman.js
 ==========
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/iwatakeshi/mailman.js.svg)](https://greenkeeper.io/)
+
 A small Javascript library that sends emails using [Mandrill](http://www.mandrillapp.com)'s email service.
 
 ##Usage
